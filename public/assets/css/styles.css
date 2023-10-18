@@ -1,0 +1,19 @@
+.dropdown-menu {
+    .dropdown-toggle {
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0.85em;
+      }
+      &::before {
+        left: 0.255em;
+      }
+      &::after {
+        right: 0.255em;
+      }
+    }
+  }
+  .pos{
+    position: relative;
+    left: 190px;
+  }

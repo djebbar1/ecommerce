@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "_partials/adminnav.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des catégories</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Parent</th>
+                         
+                            <th>Ordre</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                        <tr>
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                {% if category.parent is not null %}
+                                    {{ category.parent }}
+                                {% endif %}
+                                
+                            </td>
+                            <img src="{{ asset('assets/uploads/products/mini/image.name') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h3 class="card-title">{{ category.name }}</h3>
+                          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                          <a href="{{ path('categories_list', {id: category.id}) }}" class="btn btn-primary">Voir les produits</a>
+                            
+                            <td>
+                                <a href="{{ path('admin_categories_edit', {id: category.id}) }}" class="btn btn-success">Modifier</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_categories_delete', {id: category.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
