@@ -14,7 +14,7 @@ class CategoriesController extends AbstractController
 {
    
     #[Route('/{id}', name: 'list')]
-    public function list(Categories $category, ProductsRepository $productsRepository, Request $request, int $id): Response
+    public function list(Categories $category, ProductsRepository $productsRepository, Request $request, int $id, MainController $main): Response
     {
         // On va chercher le numéro de page dans l'url
          $page = $request->query->getInt('page', 1);
@@ -25,6 +25,7 @@ class CategoriesController extends AbstractController
         return $this->render('categories/list.html.twig', [
             'category' => $category,
             'products' => $products,
+            'main' => $main,
         ]);
 
         
@@ -36,4 +37,5 @@ class CategoriesController extends AbstractController
                 )];
         */ 
     }
+    
 }

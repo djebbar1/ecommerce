@@ -1,0 +1,40 @@
+{# templates/products/search.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche de produits{% endblock %}
+
+{% block body %}
+    <!-- <h1>Recherche de produits</h1>
+ -->
+
+    <h2>Résultats de la recherche :</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom du produit</th>
+                <th>Photo du produit</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <!-- Ajoutez d'autres colonnes selon vos besoins -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>
+                        {% if product.images|length > 0 %}
+                                <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}" alt="{{ product.name }}" class="img-thumbnail">
+                            {% else %}
+                                <p>Aucune image disponible</p>
+                            {% endif %}
+                    </td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <!-- Affichez d'autres attributs du produit ici -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

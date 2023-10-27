@@ -1,0 +1,16 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de suppression{% endblock %}
+
+{% block body %}
+    <h1>Confirmation de suppression</h1>
+    <p>Êtes-vous sûr de vouloir supprimer d'une catégorie par l'administrateur {{ category.name }} ?</p>
+   
+    <form method="post" action="{{ path('admin_categories_delete', {'id': category.id}) }}">
+        <input type="text" name="confirmation" placeholder="Tapez 'yes' pour confirmer la suppression" required>
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
+    
+    <a href="{{ path('admin_categories_index') }}" class="btn btn-secondary">Annuler</a>
+{% endblock %}

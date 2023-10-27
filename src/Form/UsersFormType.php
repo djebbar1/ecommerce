@@ -21,7 +21,7 @@ class UsersFormType extends AbstractType
             ->add('zipcode')
             ->add('city')
             ->add('password')
-            ->add('slug')
+            // ->add('slug')
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'ROLE_USER' => 'ROLE_USER',

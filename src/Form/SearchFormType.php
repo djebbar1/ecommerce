@@ -16,11 +16,15 @@ use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Positive;
 
-class ProductsFormType extends AbstractType
+class SearchFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('searchTerm', SearchFormType::class, [
+              'label' => 'Recherche de produits',
+              // ...
+          ])
             ->add('name', options:[
               'label' => 'Nom'
             ])
@@ -71,11 +75,13 @@ class ProductsFormType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Products::class,
+            //null, // Permet de ne pas lier le formulaire à une classe spécifique
+            'method' => 'GET',
+            'crsf_protection' => false
         ]);
     }
-    
-}
+}      

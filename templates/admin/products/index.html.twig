@@ -26,11 +26,13 @@
                         <tr>
                             <td class="" width="10px" height="10px">{{ product.id }}</td>
                             
-                            {% if product.images|length > 0 %}
+                            <td>
+                                {% if product.images|length > 0 %}
                                 <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}" alt="{{ product.name }}" class="img-thumbnail">
                             {% else %}
                                 <p>Aucune image disponible</p>
                             {% endif %}
+                            </td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.price / 100 }}</td>
                             <td>{{ product.stock }}</td>
