@@ -61,21 +61,22 @@ class ProductsRepository extends ServiceEntityRepository
         'crsf_protection' => false
     ]);
     }
-    public function findProduitsPaginated(int $page, int $slug, int $limit = 6): array
+    public function findProduitsPaginated(int $page, int $id, int $limit = 6): array
     {
         $limit = abs($limit);
 
         $result = [];
 
         $query = $this->getEntityManager()->createQueryBuilder()
-        ->select('c', 'p')
-        ->from('App\Entity\Products', 'p')
-        ->join('p.categories', 'c')
-        ->where('c.id = :slug')
-        ->setParameter('slug', $slug)
-        ->setMaxResults($limit)
-        ->setFirstResult(($page * $limit) - $limit);
-
+            ->select('c', 'p')
+            ->from('App\Entity\Products', 'p')
+            ->join('p.categories', 'c')
+            ->where("c.id = '$id'")
+            // ->setParameter('slug', $slug)
+            
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+       
         $paginator = new Paginator($query);
         $data = $paginator->getQuery()->getResult();
 
@@ -89,9 +90,9 @@ class ProductsRepository extends ServiceEntityRepository
 
         // On remplit le tableau
         $result['data'] = $data;
-        $result['page'] = $pages;
+        $result['pages'] = $pages;
         $result['page'] = $page;
-        $result['pages'] = $limit;
+        $result['limit'] = $limit;
 
         return $result;
 

@@ -1,4 +1,4 @@
-.dropdown-menu {
+/* .dropdown-menu {
     .dropdown-toggle {
       &::before,
       &::after {
@@ -16,4 +16,62 @@
   .pos{
     position: relative;
     left: 190px;
+  }
+  .heart{
+    position: relative;
+  }
+  
+  .heart i{
+    position:absolute;
+    
+    right: 2Px;
+    bottom: 0px;
+    color:red;
+  }
+  
+  .heart i:hover{
+    right: 2Px;
+    color: blue;
+    bottom: 0px;
+  }
+   */
+   .dropdown-menu {
+    .dropdown-toggle {
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0.85em;
+      }
+      &::before {
+        left: 0.255em;
+      }
+      &::after {
+        right: 0.255em;
+      }
+    }
+  }
+  
+  .pos {
+    position: relative;
+    left: 190px;
+  }
+  
+  .heart {
+    position: relative;
+    display: inline-block; /* Ajout pour aligner correctement le cœur */
+  }
+  .heart .fa-solid{
+      position: absolute;
+      right: 2px;
+      bottom: 0;
+      color: red !important;
+      transition: color 0.3s; /* Ajout d'une transition pour un changement de couleur fluide */
+  }
+  
+  .hear i:hover {
+      color: blue;
+  }
+  .mi{
+    width: 100px;
+    height: 100px;
   }

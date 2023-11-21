@@ -7,20 +7,29 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-             
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('main') }}">Accueil</a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Catégories
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbar">
-                    {% for categories in categoriesNavbar() %}
-                    
-                        <li><a class="dropdown-item" href="{{ path('categories_list', {'id': categories.id}) }}">{{ categories.name }}</a></li>
+                <ul class="dropdown-menu">
+                    {% for category in categories %}
+                        <li><a class="dropdown-item" href="{{ path('categories_list', {'id': category.id}) }}">{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
-
-                 
-          
+            </li>
+            <li class="nav-item ms-5 ps-2">
+                <!-- {% if not is_granted('ROLE_ADMIN') %} -->
+                  <a class="nav-link" href="{{path('profile_index', {'id': app.user.id})}}">Favoris</a>
+                  <!-- {% endif %} -->
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Produits
+                </a>
+            </li>
             </ul>
             <form class="pos d-flex me-5" role="search" action="{{ path('products_search') }}" method="get">
               <input class="form-control me-1" type="search" name="searchTermFromNavbar" placeholder="Search" aria-label="Search">
@@ -39,9 +48,9 @@
                   {% endif %}
                 
                     <li class="nav-item">
-                      {% if not is_granted('ROLE_ADMIN') %}
+                      <!-- {% if not is_granted('ROLE_ADMIN') %} -->
                         <a class="nav-link" href="{{path('profile_index', {'id': app.user.id})}}">Mon compte</a>
-                        {% endif %} 
+                        <!-- {% endif %} -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=" {{path('app_logout')}} ">Me déconnecter</a>

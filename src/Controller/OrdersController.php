@@ -45,9 +45,7 @@ class OrdersController extends AbstractController
             $orderDetails->setProducts($product);
             $orderDetails->setPrice($price);
             $orderDetails->setQuantity($quantity);
-
             $order->addOrdersDetail($orderDetails); 
-
         }
 
         // On persist et on flush
@@ -58,7 +56,6 @@ class OrdersController extends AbstractController
 
         $this->addFlash('message', 'commande crée avec succès');
         return $this->redirectToRoute('main');
-
 
         //return $this->render('orders/index.html.twig');
     }

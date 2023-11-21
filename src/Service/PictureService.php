@@ -2,11 +2,9 @@
 
 namespace App\Service;
 
-
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Config\Definition\Exception\Exception;
-
 
 class PictureService
 {

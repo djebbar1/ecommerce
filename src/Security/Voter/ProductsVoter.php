@@ -14,7 +14,6 @@ class ProductsVoter extends Voter
 {
     const EDIT = 'PRODUCT_EDIT';
     const DELETE = 'PRODUCT_DELETE';
-
     private $security;
 
     public function __construct(Security $security)

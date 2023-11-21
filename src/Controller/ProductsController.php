@@ -21,7 +21,7 @@ class ProductsController extends AbstractController
     public function index(): Response
     {
         
-        return $this->render('products/index.html.twig');
+        return $this->render('products/index.html.twig', compact('product'));
     }
     #[Route('/{slug}', name: 'details')]
     public function details(Products $product): Response
@@ -56,60 +56,5 @@ class ProductsController extends AbstractController
 
         return new Response(json_encode($imageUrls));
     }
-    // #[Route('/products/search', name: 'search')]
-    // public function search(Request $request, EntityManagerInterface $entityManager)
-    // {
-    //     //$searchTerm = $request->query->get('searchTermFromNavbar');
-    //     $searchTerm = $request->query->get('searchTermFromNavbar');
-    
-    //     // Utilisez le repository pour effectuer la recherche
-    //     //$products = $this->getDoctrine()->getRepository(Product::class)->findBySearchTerm($searchTerm);
-    //     $product = $entityManager->getRepository(Products::class)->findBySearchTerm($searchTerm);
-    //     //$product = $$entityManager->getRepository(Products::class)->findOneBy(['name' => 'Keyboard']);
-    //     // if (!$product) {
-    //     //     throw $this->createNotFoundException(
-    //     //         'No product found for id '.$searchTerm
-    //     //     );
-    //     //}
-
-    //     //return new Response('Check out this great product: '.$product->getName());
-
-    //     return $this->render('products/search.html.twig', [
-    //         'searchTermFromNavbar' => $searchTerm,
-    //         'products' => $product,
-    //     ]);
-    // }
-    // public function search(Request $request, EntityManagerInterface $entityManager, ProductsRepository $productsRepository)
-    // {
-    //     $product = new Products;
-    //     //$productsRepository = new ProductsRepository;
-    //     $form = $this->createForm(SearchType::class, $product);
-    //     $form->handleRequest($request);
-       
-        
-    //     //$products = $this->entityManager->getRepository(Products::class)->find($name);
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $searchTerm = $form->get('searchTerm')->getName();
-    //         //$searchTerm = $form->get('searchTerm')->getData();
-    //         if($searchTerm!=""){
-    //             $product = $this->$entityManager->getRepository(Products::class)->findBy(['searchTerm' => $searchTerm]);
-    //         }else{
-    //             $product = $this->$entityManager->getRepository(Products::class)->findAll();
-    //             }
-               
-    //         } dd($product);
-    //     // Utilisez le nom pour effectuer la recherche dans le repository
-    //     // $products = $productsRepository->findBySearchTerm($searchTerm);
-    
-    //         // Utilisez le nom pour effectuer la recherche dans le repository
-    //        // $products = $this->getDoctrine()->getRepository(Product::class)->findBySearchTerm($name);
-    
-         
-    //     return $this->render('products/search.html.twig', [
-    //         'searchForm' => $form->createView(),  // Assurez-vous que le formulaire est correctement passé ici
-    //         'products' => $product,
-    //     ]);
-        
-    // }
     
 }

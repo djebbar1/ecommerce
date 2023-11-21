@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Favoris{% endblock %}
+
+{% block content %}
+
+<link href="{{ asset('assets/js/favoris.js') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/favoris.css') }}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+<h1 class="fav text-center">Favoris</h1>
+ <!-- Three columns of text below the carousel -->
+ 
+
+
+ <swiper-container class="mySwiper" navigation="true" pagination="true" effect="flip" grab-cursor="true">
+ 
+ 
+ {% for products in favoris %}
+
+ <swiper-slide>
+
+   <div class="card text-center">
+         <img class="justify-content-center" src=" /uploads/image/{{product.image}}" height="250px" width="400px" alt="">
+     <figure>
+         <figcaption class=" mt-5">
+             <div class="heart">
+             
+                 {% for favorite in musics.favorite %} 
+                 {% if favorite.id == app.user.id %}
+                     <a href="{{ path('delete_favoris', {'id': musics.id}) }}"><i class="fa-solid fa-heart"></i></a>
+                 {% else %}
+                     <a href="{{ path('delete_favoris', {'id': musics.id}) }}"><i class="fa-regular fa-heart"></i></a>
+                 {% endif %}
+                 {% else %}
+                     <a href="{{ path('ajout_favoris', {'id': musics.id}) }}"><i class="fa-regular fa-heart"></i></a>
+             {% endfor %}
+             </div>
+            
+                 Catégories: {{musics.categorie}}<br/>         
+                 Chanteur: {{musics.title}}<br/>
+                 Titre: {{musics.singer}}<br/>         
+         </figcaption>
+         <audio class="mb-0" controls
+             preload="auto" src="/uploads/song/{{musics.song}}"><a href="/uploads/song/{{musics.song}}"></a>
+         </audio>
+     </figure>
+     </div>
+ </swiper-slide>
+ {% endfor %} 
+</swiper-container>
+
+
+{% endblock %}

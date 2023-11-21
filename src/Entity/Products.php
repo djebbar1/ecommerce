@@ -53,11 +53,15 @@ class Products
     #[ORM\OneToMany(mappedBy: 'products', targetEntity: OrdersDetails::class)]
     private Collection $ordersDetails;
 
+    #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'Products')]
+    private Collection $favoris;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->ordersDetails = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,6 +184,33 @@ class Products
             if ($ordersDetail->getProducts() === $this) {
                 $ordersDetail->setProducts(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): static
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): static
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeProduct($this);
         }
 
         return $this;

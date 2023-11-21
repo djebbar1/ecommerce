@@ -42,10 +42,10 @@ class Categories
         return $this->id;
     }
 
-    // Dans votre entité Categories, ajoutez une méthode __toString()
+    // Dans l' entité Categories, ajoute une méthode __toString()
     public function __toString()
     {
-    return $this->getName(); // Vous pouvez retourner n'importe quelle propriété de l'entité que vous souhaitez afficher
+    return $this->getName(); 
     }
     public function getName(): ?string
     {

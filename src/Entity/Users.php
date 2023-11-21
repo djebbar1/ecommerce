@@ -59,11 +59,15 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Orders::class)]
     private Collection $orders;
 
+    #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'Users')]
+    private Collection $favoris;
+
 
     public function __construct()
     {
         $this->orders = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +249,33 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             if ($order->getUsers() === $this) {
                 $order->setUsers(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): static
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): static
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeUser($this);
         }
 
         return $this;

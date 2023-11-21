@@ -18,6 +18,19 @@
                 class="card-img-top" alt="{{ product.name }}">
             {% endif %}
                 <p class="card-text">{{ product.description }}</p>
+                <div class="pos">
+                    {% set isFavorite = false %}
+                    
+                    {# Vérifiez si le produit est dans la liste des favoris #}
+                    
+                    {# Affichez l'icône de cœur en fonction de l'état favori #}
+                    
+                    {% if isFavorite %}
+                        <a href="{{ path('favoris_list', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-solid fa-heart heart"></i></a>
+                    {% else %}
+                        <a href="{{ path('favoris_list', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-regular fa-heart heart"></i></a>
+                    {% endif %}
+                </div>
                 <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
             </div>
         </div>
@@ -25,7 +38,7 @@
 {% endfor %}
 
             {% set path = 'categories_list' %}
-            {% set slug = category.slug %}
+            {% set slug = category.id %}
             {% set pages = products.pages %}
             {% set currentPage = products.page %}
             {% include "_partials/pagination.html.twig" %}

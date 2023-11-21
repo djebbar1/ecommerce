@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
 use App\Entity\Users;
 use App\Repository\CategoriesRepository;
 use App\Repository\UsersRepository;
@@ -14,7 +13,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
 #[Route('/profile', name: 'profile_')]
 class ProfileController extends AbstractController
 {
@@ -23,7 +21,8 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'Profil de l\'utilisateur',
-            
+            'categories' => $categoriesRepository->findAll(),
+            ['categoryOrder' => 'asc']
         ]);
     }
     #[Route('/orders', name: 'orders')]

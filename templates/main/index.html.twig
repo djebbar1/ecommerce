@@ -7,31 +7,9 @@
                 <h1 class="mt-2 mb-2 text-center">Site e-commerce</h1>
                 <p class="mt-2 mb-5 text-center">Bienvenue dans notre boutique</p>
             </div>
-            {% for category in categories %}
-                {% if category.parent == null %}
-                    <div class="card-body">
-                        <div class="col-12">
-                            <h2>{{ category.name }}</h2> 
-                            {% for iteration in 1..category.images|length %}
-                                {% for image in category.images %}
-                                    <img src="{{ asset('assets/images/figm/' ~ category.name ~ '.jpg') }}" alt="{{ category.name }}" class="img-thumbnail" width="100px" height="100px">
-                                {% endfor %}
-                            {% endfor %}
-                            <a href="{{ path('categories_list', {id: category.id}) }}" class="btn btn-primary">Voir les produits</a>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="col-3">
-                        <div class="card me-5 mb-5" style="width: 18rem;">
-                            <img src="{{ asset('/images/figm/' ~ category.name ~ '.jpg') }}" alt="{{ category.name }}" class="img-thumbnail" width="100px" height="100px">
-                            <!-- mettre image ici -->
-                            <div class="card-body">
-                                <h3 class="card-title">{{ category.name }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %} 
+            <div >
+                <img class="mi" src="../../images/acceuil/apple.jpg" alt="" !important>
+            </div>
         </section>
     </main>
 {% endblock %}

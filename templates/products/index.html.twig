@@ -22,12 +22,14 @@
                 class="card-img-top" alt="{{ product.name }}">
             {% endif %}
                 <p class="card-text">{{ product.description }}</p>
-                <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
+                 <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
+                
+               
             </div>
         </div>
     </div>
 {% endfor %}
-
+            
             {% set path = 'categories_list' %}
             {% set slug = category.slug %}
             {% set pages = products.pages %}

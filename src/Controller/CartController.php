@@ -106,7 +106,6 @@ class CartController extends AbstractController
     {
         // on supprime tous le panier d'un coup
         $session->remove('panier');
-
          // On redirige vers la page du panier
          return $this->redirectToRoute('cart_index');
     }

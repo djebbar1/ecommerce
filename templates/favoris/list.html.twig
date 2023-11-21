@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des favoris{% endblock %}
+
+{% block body %}
+    <h1>Liste des favoris</h1>
+
+    {# Vérifiez si favoris est défini et non vide #}
+{% if favoris is defined and favoris|length > 0 %}
+    {% for favori in favoris %}
+        <div class="col-3 mb-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Favoris{{ favoris.id }}</h2>
+                    {% if favoris.products is not empty %}
+                        {% for product in favori.products %}
+                            <h3>{{ product.name }}</h3>
+                            {% if product.images|length > 0 %}
+                            <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}" 
+                            class="card-img-top" alt="{{ product.name }}">
+                            {% endif %}
+
+                            <p class="card-text">{{ product.description }}</p>
+                            <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Aucun produit associé à ce favori.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Aucun favori pour le moment.</p>
+{% endif %}
+
+{% endblock %}
