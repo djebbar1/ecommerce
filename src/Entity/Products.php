@@ -53,9 +53,8 @@ class Products
     #[ORM\OneToMany(mappedBy: 'products', targetEntity: OrdersDetails::class)]
     private Collection $ordersDetails;
 
-    #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'Products')]
+    #[ORM\ManyToMany(targetEntity: Users::class, inversedBy: 'favoris')]
     private Collection $favoris;
-
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -190,28 +189,25 @@ class Products
     }
 
     /**
-     * @return Collection<int, Favoris>
+     * @return Collection<int, Users>
      */
     public function getFavoris(): Collection
     {
         return $this->favoris;
     }
 
-    public function addFavori(Favoris $favori): static
+    public function addFavori(Users $favori): static
     {
         if (!$this->favoris->contains($favori)) {
             $this->favoris->add($favori);
-            $favori->addProduct($this);
         }
 
         return $this;
     }
 
-    public function removeFavori(Favoris $favori): static
+    public function removeFavori(Users $favori): static
     {
-        if ($this->favoris->removeElement($favori)) {
-            $favori->removeProduct($this);
-        }
+        $this->favoris->removeElement($favori);
 
         return $this;
     }

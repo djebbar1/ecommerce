@@ -11,34 +11,29 @@
             {% for product in products.data %}
     <div class="col-3 mb-3">
         <div class="card" style="width: 18rem;">
-            <p class="card-body">
-                <p class="position-absolute top-5 end-0">
-                {% if app.user is not null %}
+            <div class="card-body">
                 
-                {% for favoris in product.favoris %}
-                        {% if favoris.id == app.user.id %}
-                            <a href="{{ path('favoris_remove_favorite', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-solid fa-heart heart"></i></a>
-                        {% else %}
-                        <a href="{{ path('favoris_list', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-regular fa-heart"></i></a>
-                        {% endif %}
-                    {% else %}
-                    <a href="{{ path('favoris_list', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-regular fa-heart"></i></a>
-                    {% endfor %}
-                        {% else %}
-                    {% endif %}
-            </p>
                 {% if product.images|length > 0 %}
                 <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}" 
                 class="card-img-top" alt="{{ product.name }}">
             {% endif %}
-            
             <h2 class="card-title text-center">{{ product.name }}</h2>
             <p class="card-text text-center">{{ product.price }} €</p>
             <p class="card-text">{{ product.description }}</p>
-            <p class="text-center">
-            <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary text-center">Voir les détails</a></p>
+            <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
             
-                    
+                    {% if app.user is not null %}
+                    {% for favoris in product.favoris %}
+                        {% if favoris.id == app.user.id %}
+                            <a href="{{ path('favoris_remove_favorite', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-solid fa-heart heart ms-5"></i></a>
+                        {% else %}
+                        <a href="{{ path('favoris_list', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-regular fa-heart ms-5"></i></a>
+                        {% endif %}
+                    {% else %}
+                    <a href="{{ path('favoris_list', {'id': product.id, 'idCategories': product.categories.id}) }}"><i class="fa-regular fa-heart ms-5"></i></a>
+                    {% endfor %}
+                        {% else %}
+                    {% endif %}
                 </div>
             </div>
         </div>

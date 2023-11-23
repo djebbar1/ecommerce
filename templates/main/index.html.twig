@@ -2,14 +2,55 @@
 {% block title %}Main{% endblock %}
 {% block body %}
     <main class="container">
-        <section class="row">
+        <div class="row">
             <div class="col-12">
                 <h1 class="mt-2 mb-2 text-center">Site e-commerce</h1>
                 <p class="mt-2 mb-5 text-center">Bienvenue dans notre boutique</p>
             </div>
-            <div >
-                <img class="mi" src="../../images/acceuil/apple.jpg" alt="" !important>
+        </div>
+        <div class="row d-flex justify-content-around">
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/figm/composants.jpg') }}" alt="">
             </div>
-        </section>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/figm/peripheriques.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/figm/portables.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/figm/son.jpg') }}" alt="">
+            </div>
+            <div class="col-2">
+                <img class="dell" src="{{ asset('assets/images/figm/tablettes.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="tel" src="{{ asset('assets/images/figm/tel.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/figm/tv.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/figm/pcc.jpg') }}" alt="">
+            </div>
+        </div>
+        <div class="row d-flex justify-content-around">
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/acceuil/apple.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/acceuil/dell.jpg') }}" alt="">
+            </div>
+            <div class="col-2 me-5">
+                <img class="dell" src="{{ asset('assets/images/acceuil/hp.jpg') }}" alt="">
+            </div>
+            <div class="col-2">
+                <img class="dell" src="{{ asset('assets/images/acceuil/sam.jpg') }}" alt="">
+            </div>
+        </div>
+         <div class="text-center mb-5 mt-5">
+            <img class="pres" src="{{ asset('assets/images/acceuil/pres.jpg') }}" alt="">
+        </div>
+            
     </main>
 {% endblock %}

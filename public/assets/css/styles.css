@@ -51,7 +51,7 @@
     }
   }
   
-  .pos {
+  /* .pos {
     position: relative;
     left: 190px;
   }
@@ -59,19 +59,61 @@
   .heart {
     position: relative;
     display: inline-block; /* Ajout pour aligner correctement le cœur */
-  }
+ /* }
   .heart .fa-solid{
-      position: absolute;
-      right: 2px;
-      bottom: 0;
+      
       color: red !important;
       transition: color 0.3s; /* Ajout d'une transition pour un changement de couleur fluide */
-  }
+  /*}
   
   .hear i:hover {
       color: blue;
+  } */
+  .dell{
+    width: 250%;
+    height: 300px;
   }
-  .mi{
-    width: 100px;
-    height: 100px;
+  .pres{
+    width: 50%;
+    height: 200px;
+  }
+  
+  @media only screen and (min-width: 1288px) {
+    .dell{
+      width: 220%;
+      height: 280px;
+    }
+  }
+  @media only screen and (min-width: 1008px) {
+    .dell{
+      width: 200%;
+      height: 250px;
+    }
+    .pres{
+      width: 100%;
+      height: 160px;
+    }
+  }
+  @media only screen and (min-width: 750px) {
+    .dell{
+      width: 180%;
+      height: 250px;
+    }
+    .pres{
+      margin-left: 10px;
+      width: 100%;
+      height: 160px;
+    }
+  }
+  @media only screen and (min-width: 630px) {
+    .dell{
+      width: 160%;
+      height: 220px;
+    }
+  }
+  @media only screen and (min-width: 530px) {
+    .dell{
+      width: 160%;
+      height: 220px;
+    }
   }

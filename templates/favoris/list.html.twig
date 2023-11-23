@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Liste des favoris</h1>
-
+    <section class="row">
     {# Vérifiez si favoris est défini et non vide #}
 {% if favoris is defined and favoris|length > 0 %}
     {% for favori in favoris %}
@@ -36,5 +36,5 @@
 {% else %}
     <p>Aucun favori pour le moment.</p>
 {% endif %}
-
+</section>
 {% endblock %}

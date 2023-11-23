@@ -59,9 +59,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Orders::class)]
     private Collection $orders;
 
-    #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'Users')]
+    #[ORM\ManyToMany(targetEntity: Products::class, mappedBy: 'favoris')]
     private Collection $favoris;
-
 
     public function __construct()
     {
@@ -255,30 +254,29 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Favoris>
+     * @return Collection<int, Products>
      */
     public function getFavoris(): Collection
     {
         return $this->favoris;
     }
 
-    public function addFavori(Favoris $favori): static
+    public function addFavori(Products $favori): static
     {
         if (!$this->favoris->contains($favori)) {
             $this->favoris->add($favori);
-            $favori->addUser($this);
+            $favori->addFavori($this);
         }
 
         return $this;
     }
 
-    public function removeFavori(Favoris $favori): static
+    public function removeFavori(Products $favori): static
     {
         if ($this->favoris->removeElement($favori)) {
-            $favori->removeUser($this);
+            $favori->removeFavori($this);
         }
 
         return $this;
     }
-
 }

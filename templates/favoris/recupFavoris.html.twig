@@ -4,8 +4,24 @@
 
 {% block body %}
     <h1>Liste des favoris</h1>
+    {# Vérifiez si favoris est défini et non vide #}
+    <div class="row">
+        <div class="col-3 mb-3">
+            <div class="card" style="width: 18rem;">
+                {% for product in favoris %}
+                    <div class="card-body">
+                            <h3>{{ product.name }}</h3>
+                            {% if product.images|length > 0 %}
+                            <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}" 
+                            class="card-img-top" alt="{{ product.name }}">
+                            {% endif %}
 
-    {% for favori in favoris %}
-    
-    {% endfor %}
+                            <p class="card-text">{{ product.description }}</p>
+                            <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

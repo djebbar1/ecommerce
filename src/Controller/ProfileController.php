@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
+// #[IsGranted('ROLE_ADMIN')]
 #[Route('/profile', name: 'profile_')]
 class ProfileController extends AbstractController
 {
@@ -22,8 +22,7 @@ class ProfileController extends AbstractController
     public function index(CategoriesRepository $categoriesRepository): Response
     {
         return $this->render('profile/index.html.twig', [
-            'controller_name' => 'Profil de l\'utilisateur',
-            
+            'controller_name' => 'Profil de l\'utilisateur',   
         ]);
     }
     #[Route('/orders', name: 'orders')]
